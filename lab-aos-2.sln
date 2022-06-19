@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApp1", "WpfApp1\WpfApp1.csproj", "{519E9CD4-04AE-45EA-9647-46378275A333}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SupplierAndConsumer", "SupplierAndConsumer\SupplierAndConsumer.csproj", "{7CABF642-A1C2-44AA-B318-0180EB2C5DC7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -14,9 +16,15 @@ Global
 		{437238CF-115C-4D55-8673-24DBC355CBEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{437238CF-115C-4D55-8673-24DBC355CBEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{437238CF-115C-4D55-8673-24DBC355CBEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{437238CF-115C-4D55-8673-24DBC355CBEE}.Release|Any CPU.Deploy.0 = Release|Any CPU
 		{519E9CD4-04AE-45EA-9647-46378275A333}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{519E9CD4-04AE-45EA-9647-46378275A333}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{519E9CD4-04AE-45EA-9647-46378275A333}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{519E9CD4-04AE-45EA-9647-46378275A333}.Release|Any CPU.Build.0 = Release|Any CPU
+		{519E9CD4-04AE-45EA-9647-46378275A333}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{7CABF642-A1C2-44AA-B318-0180EB2C5DC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CABF642-A1C2-44AA-B318-0180EB2C5DC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CABF642-A1C2-44AA-B318-0180EB2C5DC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CABF642-A1C2-44AA-B318-0180EB2C5DC7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

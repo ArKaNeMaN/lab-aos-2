@@ -30,7 +30,7 @@ namespace WpfApp1
 
         private static MainWindow? _window;
 
-        private static bool SyncState = true;
+        private static bool _syncState = true;
 
         public MainWindow()
         {
@@ -39,13 +39,19 @@ namespace WpfApp1
             _window = this;
 
             UpdateState();
+            UpdateSyncState();
         }
 
         private void SwitchSync(object? sender = null, RoutedEventArgs? e = null)
         {
-            SyncState = !SyncState;
+            _syncState = !_syncState;
 
-            SwitchSyncBtn.Content = SyncState ? "+" : "-";
+            UpdateSyncState();
+        }
+
+        private void UpdateSyncState()
+        {
+            SwitchSyncBtn.Content = _syncState ? "+" : "-";
         }
 
         private void UpdateState(object? sender = null, RoutedEventArgs? e = null)
@@ -114,8 +120,6 @@ namespace WpfApp1
                 Console.WriteLine("Drawers started.");
                 StartDrawers();
             }
-
-            UpdateState();
         }
 
         private void OnApplySpeed(object sender, RoutedEventArgs e)
@@ -133,8 +137,6 @@ namespace WpfApp1
                 StopDrawers();
                 Console.WriteLine("Drawers stopped.");
             }
-
-            UpdateState();
         }
 
         private void OnReset(object sender, RoutedEventArgs e)
@@ -144,8 +146,6 @@ namespace WpfApp1
             ShapesCanvas.Children.Clear();
             _latestPoint = new Point(-1, -1);
             _isCanvasOverflowed = false;
-
-            UpdateState();
         }
         
         // Лень делать нормально, пусть будет статикой))
@@ -189,7 +189,7 @@ namespace WpfApp1
                 Flag[RectangleTurn] = true;
                 _turn = TriangleTurn;
 
-                if (SyncState)
+                if (_syncState)
                 {
                     while (Flag[TriangleTurn] && _turn == TriangleTurn)
                     {
@@ -216,7 +216,7 @@ namespace WpfApp1
                 Flag[TriangleTurn] = true;
                 _turn = RectangleTurn;
 
-                if (SyncState)
+                if (_syncState)
                 {
                     while (Flag[RectangleTurn] && _turn == RectangleTurn)
                     {
