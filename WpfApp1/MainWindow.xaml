@@ -1,0 +1,47 @@
+﻿<Window x:Class="WpfApp1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Pricol" Height="800" Width="800">
+    <Grid Width="800" Height="800" ShowGridLines="False">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        
+        <StackPanel Orientation="Horizontal" Grid.Row="0">
+            <Button Click="OnStart" Width="50">Старт</Button>
+            <Button Click="OnStop" Width="50">Стоп</Button>
+            <Button Click="OnReset" Width="50">Сброс</Button>
+            
+            <Separator Width="50" Visibility="Hidden"></Separator>
+            
+            <Border Padding="2.5">
+                <Polygon Points="7.5,0 0,15 15,15" Stroke="Black"></Polygon>
+            </Border>
+            <TextBox Width="50" x:Name="Speed1Field">500</TextBox>
+            
+            <Separator Width="10" Visibility="Hidden"></Separator>
+            
+            <Border Padding="2.5">
+                <Rectangle Width="15" Height="15" Stroke="Black"></Rectangle>
+            </Border>
+            <TextBox Width="50" x:Name="Speed2Field">500</TextBox>
+            
+            <Separator Width="10" Visibility="Hidden"></Separator>
+            
+            <Button Click="OnApplySpeed" Width="150">Применить скорость</Button>
+            
+            <Separator Width="50" Visibility="Hidden"></Separator>
+            
+            <TextBlock Height="20" LineHeight="20" Width="150" x:Name="StateTextBlock"></TextBlock>
+            
+            <Separator Width="20" Visibility="Hidden"></Separator>
+            <Button Click="SwitchSync" Width="20" x:Name="SwitchSyncBtn">+</Button>
+        </StackPanel>
+        
+        <Canvas Grid.Row="1" x:Name="ShapesCanvas" Background="Black"></Canvas>
+    </Grid>
+</Window>

@@ -20,10 +20,17 @@ internal static class Program
     
     public static void Main()
     {
+        Console.WriteLine("Started two threads for {0} seconds.", TimeLimit / 1000);
+
+        Start();
+        
+        Console.WriteLine("Stopped.");
+    }
+    
+    public static void Start()
+    {
         TriangleThread = new Thread(TriangleDrawer);
         RectangleThread = new Thread(RectangleDrawer);
-        
-        Console.WriteLine("Started two threads for {0} seconds.", TimeLimit / 1000);
         
         TriangleThread.Start();
         RectangleThread.Start();
@@ -34,8 +41,6 @@ internal static class Program
         
         TriangleThread.Join();
         RectangleThread.Join();
-        
-        Console.WriteLine("Stopped.");
     }
 
     private static void RectangleDrawer()
@@ -82,7 +87,7 @@ internal static class Program
         }
     }
 
-    private static void Draw(string shape, int x, int y)
+    public static void Draw(string shape, int x, int y)
     {
         Console.WriteLine("{0} [{1}, {2}]", shape, x, y);
     }
