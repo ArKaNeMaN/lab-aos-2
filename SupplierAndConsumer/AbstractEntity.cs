@@ -2,11 +2,11 @@ using System.Threading;
 
 namespace SupplierAndConsumer;
 
-abstract public class AbstractEntity
+public abstract class AbstractEntity
 {
-    private bool _stopFlag = false;
-    private Thread? _thread = null;
-    private int _count = 0;
+    private bool _stopFlag;
+    private Thread? _thread;
+    private int _count;
     public int Speed = 200;
 
     protected InfBuffer? Buff;

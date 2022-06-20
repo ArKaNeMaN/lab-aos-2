@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Shapes;
@@ -35,18 +36,18 @@ namespace SupplierAndConsumer
                     break;
 
                 case InfBufferActionType.Store:
-                    AddItems(1);
+                    AddItems();
                     break;
 
                 case InfBufferActionType.Take:
-                    RemoveItems(1);
+                    RemoveItems();
                     break;
             }
         }
 
         private void OnStart(object sender, RoutedEventArgs e)
         {
-            _buffer.Reset();
+            // _buffer.Reset();
             _con.Start();
             _sup.Start();
         }
@@ -59,15 +60,22 @@ namespace SupplierAndConsumer
 
         private void OnStop(object sender, RoutedEventArgs e)
         {
-            _con.Stop();
-            _sup.Stop();
+            new Thread(() =>
+            {
+                _con.Stop();
+                _sup.Stop();
+            }).Start();
         }
 
         private void OnReset(object sender, RoutedEventArgs e)
         {
-            _con.Reset();
-            _sup.Reset();
-            _buffer.Reset();
+            new Thread(() =>
+            {
+                _con.Reset();
+                _sup.Reset();
+                _buffer.Reset();
+                _latestRemovedItem = -1;
+            }).Start();
         }
 
         private void UpdateItems(int num)
@@ -83,7 +91,7 @@ namespace SupplierAndConsumer
             }
         }
 
-        private readonly Random rnd = new();
+        private readonly Random _rnd = new();
         private int _latestRemovedItem = -1;
 
         private void AddItems(int num = 1)
@@ -95,9 +103,9 @@ namespace SupplierAndConsumer
                     Width = 23,
                     Height = 23,
                     Fill = new SolidColorBrush(Color.FromRgb(
-                        (byte)rnd.Next(100, 255),
-                        (byte)rnd.Next(100, 255),
-                        (byte)rnd.Next(100, 255)
+                        (byte)_rnd.Next(100, 255),
+                        (byte)_rnd.Next(100, 255),
+                        (byte)_rnd.Next(100, 255)
                     ))
                     // Stroke = Brushes.Chartreuse,
                 });

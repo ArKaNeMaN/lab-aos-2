@@ -10,7 +10,7 @@ public class InfBuffer
 {
     private Mutex _mainMutex;
     // private Mutex _availableMutex;
-    
+
     private readonly int _initialTotal;
     private int _total;
     private int _taken;
@@ -20,13 +20,13 @@ public class InfBuffer
     public InfBuffer(BufferActionCallback? callback, int initialTotal = 0)
     {
         _callback = callback;
-        
+
         _initialTotal = initialTotal;
         _total = initialTotal;
-        
+
         _mainMutex = new Mutex();
         // _availableMutex = new Mutex();
-        
+
         Event(InfBufferActionType.Init);
     }
 
@@ -36,10 +36,12 @@ public class InfBuffer
         // {
         //     _availableMutex.WaitOne();
         // }
-        
+
         // Не придумал как на мьютексте сделать.
-        while (GetRest() < 1) {}
-        
+        while (GetRest() < 1)
+        {
+        }
+
         Wait();
     }
 
@@ -74,7 +76,7 @@ public class InfBuffer
         // {
         //     _availableMutex.WaitOne();
         // }
-        
+
         _mainMutex.ReleaseMutex();
     }
 
@@ -84,7 +86,7 @@ public class InfBuffer
 
         _total++;
         Event(InfBufferActionType.Store, _total - 1);
-        
+
         _mainMutex.ReleaseMutex();
 
         // if (GetRest() == 1)
@@ -97,18 +99,15 @@ public class InfBuffer
     {
         _total = _initialTotal;
         _taken = 0;
-        
+
         _mainMutex = new Mutex();
         // _availableMutex = new Mutex();
-        
+
         Event(InfBufferActionType.Init);
     }
-    
+
     private void Event(InfBufferActionType type, int? index = null)
     {
-        Application.Current?.Dispatcher?.Invoke(() => 
-        {
-            _callback?.Invoke(this, type, index);
-        });
+        Application.Current?.Dispatcher?.Invoke(() => { _callback?.Invoke(this, type, index); });
     }
 }
