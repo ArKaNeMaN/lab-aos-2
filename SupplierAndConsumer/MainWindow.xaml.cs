@@ -67,7 +67,7 @@ namespace SupplierAndConsumer
             }).Start();
         }
 
-        private void OnReset(object sender, RoutedEventArgs e)
+        private void OnReset(object? sender, RoutedEventArgs? e)
         {
             new Thread(() =>
             {
@@ -128,6 +128,11 @@ namespace SupplierAndConsumer
         private void ClearItems()
         {
             ItemsGrid.Children.Clear();
+        }
+
+        private void OnClosing(object? sender, EventArgs e)
+        {
+            OnReset(sender, null);
         }
     }
 }
